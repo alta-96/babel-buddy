@@ -1,10 +1,13 @@
-﻿import React, { useState, useEffect, useRef } from "react";
+﻿import React, {useState, useEffect, useRef} from "react";
+import {IoCloseCircleSharp} from "react-icons/io5";
+import {Button} from "react-bootstrap";
 
 type Props = {
     children?: any;
     className: any;
     titleClasses: any;
     title?: string
+    canClose?: boolean
 };
 
 type Pos = { x: number; y: number };
@@ -13,7 +16,6 @@ const Draggable = (props: Props) => {
     const [pos, setPos] = useState({} as Pos);
     const [dragging, setDragging] = useState(false);
     const [rel, setRel] = useState<{ x: number; y: number } | null>(null);
-    const [zIndex, setZIndex] = useState(1); // state variable for z-index
     const modalRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
@@ -75,7 +77,7 @@ const Draggable = (props: Props) => {
     };
 
     const bringToFront = () => {
-        const draggables = document.getElementsByClassName(props.className);
+        const draggables = document.getElementsByClassName('draggable');
         let maxZIndex = 0;
         for (let i = 0; i < draggables.length; i++) {
             const zIndex = parseInt((draggables[i] as HTMLElement).style.zIndex || "0");
@@ -85,22 +87,31 @@ const Draggable = (props: Props) => {
         }
         modalRef.current!.style.zIndex = (maxZIndex + 1).toString();
     };
-    
+
     return (
         <div
-            className={props.className}
-            style={{ left: pos.x + "px", top: pos.y + "px" }}
+            className={`${props.className} draggable`}
+            style={{left: pos.x + "px", top: pos.y + "px"}}
             onMouseDown={bringToFront}
             ref={modalRef}
         >
             <div onMouseDown={onMouseDown}
                  style={{background: '#0275D8', cursor: 'pointer'}}
             >
-                <p style={{color: '#fff', fontSize: '18px', padding: '5px 10px'}} className={props.titleClasses}>
-                    {props.title}
-                </p>
+                <div className={props.canClose ? `d-flex flex-row justify-content-between` : ''}
+                     style={{color: '#fff', fontSize: '16px', padding: '5px 10px'}}>
+                    <p className={props.titleClasses} style={{margin: '0'}}>
+                        {props.title}
+                    </p>
+                    {props.canClose && <Button variant="link" className="rounded-circle p-0 m-0"
+                                               onClick={() => alert('closing window')}>
+                        <IoCloseCircleSharp style={{fontSize: '22px', color: 'red'}}/>
+                    </Button>}
+                </div>
             </div>
-            {props.children}
+            <div className="pt-3 pb-0">
+                {props.children}
+            </div>
         </div>
     );
 };

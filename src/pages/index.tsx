@@ -3,6 +3,7 @@ import Head from 'next/head'
 // const inter = Inter({ subsets: ['latin'] })
 
 import ChatRequest from "@/components/ChatRequest/ChatRequest";
+import ChatInstance from "@/components/ChatInstance/ChatInstance";
 
 export default function Home() {
     return (
@@ -21,7 +22,10 @@ export default function Home() {
             <main>
                 
                 
-                <ChatRequest invitationFrom="Bob" />
+                <ChatRequest fromUser="3283292933" /> 
+                <ChatInstance withUser="03929320208" />
+                <ChatInstance withUser="03929320208" />
+                <ChatInstance withUser="03929320208" />
             </main>
         </>
     )

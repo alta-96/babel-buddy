@@ -2,7 +2,7 @@ import Head from 'next/head'
 // import { Inter } from 'next/font/google'
 // const inter = Inter({ subsets: ['latin'] })
 
-import Button from 'react-bootstrap/Button';
+import ChatRequest from "@/components/ChatRequest/ChatRequest";
 
 export default function Home() {
     return (
@@ -19,15 +19,9 @@ export default function Home() {
                 />
             </Head>
             <main>
-                <div className="row">
-                    <div className="col-6 bg-danger">
-                        <h1>hi</h1>
-                    </div>
-                    <div className="col-6 bg-warning">
-                        <h1>hi</h1>
-                    </div>
-                    <Button>test</Button>
-                </div>
+                
+                
+                <ChatRequest invitationFrom="Bob" />
             </main>
         </>
     )

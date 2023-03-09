@@ -1,0 +1,21 @@
+﻿.chat-draggable {
+    position: absolute;
+    background-color: white;
+    border-radius: 5px;
+    top: calc(50% - 75px);
+    left: calc(50% - 225px);
+    width: 450px;
+    height: 150px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    cursor: default;
+}
+
+.chat-title {
+    text-align: center;
+    font-weight: bold;
+}
+
+.chat-body {
+    text-align: center;
+}

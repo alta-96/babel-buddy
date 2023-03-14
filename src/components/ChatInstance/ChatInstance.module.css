@@ -1,12 +1,26 @@
 ﻿.chat-draggable {
     position: absolute;
-    background-color: white;
+    background: #1565AB;
     border-radius: 5px;
     top: calc(50% - 200px);
     left: calc(50% - 275px);
-    width: 550px;
-    height: 400px;
+    width: 500px;
+    height: 375px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     overflow: hidden;
     cursor: default;
+}
+
+.send-btn {
+    position: relative;
+    left: -7px;
+    top: 2px;
+    padding: 0;
+}
+
+.support-tool-container {
+    position: relative;
+    left: -10px;
+    background: white;
+    border: 2px solid black;
 }

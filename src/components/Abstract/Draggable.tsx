@@ -3,11 +3,13 @@ import {IoCloseCircleSharp} from "react-icons/io5";
 import {Button} from "react-bootstrap";
 
 type Props = {
-    children?: any;
-    className: any;
-    titleClasses: any;
-    title?: string
-    canClose?: boolean
+    windowId: string,
+    children?: any,
+    className: any,
+    titleClasses: any,
+    title?: string,
+    canClose?: boolean,
+    closeWindow: Function
 };
 
 type Pos = { x: number; y: number };
@@ -18,6 +20,10 @@ const Draggable = (props: Props) => {
     const [rel, setRel] = useState<{ x: number; y: number } | null>(null);
     const modalRef = useRef<HTMLDivElement>(null);
 
+    useEffect(() => {
+        bringToFront();
+    })
+    
     useEffect(() => {
         const onMouseMove = (e: MouseEvent) => {
             if (!dragging) return;
@@ -104,12 +110,12 @@ const Draggable = (props: Props) => {
                         {props.title}
                     </p>
                     {props.canClose && <Button variant="link" className="rounded-circle p-0 m-0"
-                                               onClick={() => alert('closing window')}>
+                                               onClick={() => props.closeWindow(props.windowId)}>
                         <IoCloseCircleSharp style={{fontSize: '22px', color: 'red'}}/>
                     </Button>}
                 </div>
             </div>
-            <div className="pt-3 pb-0">
+            <div className="pt-1 pb-0">
                 {props.children}
             </div>
         </div>
